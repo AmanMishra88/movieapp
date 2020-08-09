@@ -1,0 +1,24 @@
+var express = require('express');
+var app = express(); //creating object for express
+var port = 7800 || env.process.PORT;
+
+//route
+
+app.get('/', function(req, res){       //get,put etc
+    res.send('My First App');
+})
+app.get('/movies', function(req, res){       
+    res.send('My Movie page with movie details');
+})
+app.get('/details', function(req, res){       
+    res.send('Details of movies');
+})
+
+app.get('/artist', function(req, res){       
+    res.send('My Artist page and it contains their details');
+})
+
+app.listen(port, function(err){
+    if(err) throw err;
+    console.log("Server is running on port :" + port);
+})
