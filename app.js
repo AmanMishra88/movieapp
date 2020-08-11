@@ -1,30 +1,21 @@
 var express = require('express');
 var app = express(); //creating object for express
 var port = 7800 || env.process.PORT;
-var moviesRouter = express.Router();
-var artistRouter = express.Router();
+var moviesRouter = require('./src/routes/moviesRoute');
+var artistRouter = require('./src/routes/artistRoute');
 
-//route
+app.use(express.static(__dirname + '/public'));
+app.set('views', './src/views');
+app.set('view engine', 'ejs');  // embedding template engine
+
+var menu = [
+    'HOME', 'MOVIES', 'ARTISTS'
+]
 
 app.get('/', function(req, res){       //get,put etc
-    res.send('My First App');
+   // res.send('My First App');
+   res.render('index');
 })
-moviesRouter.route('/')
-    .get(function(req,res){
-        res.send('This is movies page');
-    })
-moviesRouter.route('/details')
-    .get(function(req,res){
-        res.send('This is movies details page');
-    })
-artistRouter.route('/')
-    .get(function(req,res){
-        res.send('This is artist page');
-    })
-artistRouter.route('/details')
-    .get(function(req,res){
-        res.send('This is artist detail page');
-    })
 
 app.use('/movies', moviesRouter);
 app.use('/artist', artistRouter);
