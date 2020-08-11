@@ -9,12 +9,14 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');  // embedding template engine
 
 var menu = [
-    'HOME', 'MOVIES', 'ARTISTS'
+    {name:'Home', link:'/'},
+    {name:'Movies', link:'/movies'},
+    {name: 'Artist', link:'/artist'}
 ]
 
 app.get('/', function(req, res){       //get,put etc
    // res.send('My First App');
-   res.render('index');
+   res.render('index',{title: 'Home Page',menu:menu});
 })
 
 app.use('/movies', moviesRouter);
